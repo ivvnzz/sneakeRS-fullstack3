@@ -56,12 +56,10 @@ public class TokenService {
             try {
                 mapper.writerWithDefaultPrettyPrinter().writeValue(file, list);
             } catch (IOException e) {
-                // Log the failure but return the token so the sale can proceed
                 logger.error("Unable to write tokens file {}", file.getAbsolutePath(), e);
             }
             return token;
         } catch (Exception e) {
-            // Catch any unexpected exception - still return a token so sale can proceed.
             logger.error("Unexpected error generating token, returning fallback token: {}", e.getMessage(), e);
             return UUID.randomUUID().toString();
         }
